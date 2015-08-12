@@ -19,4 +19,20 @@ describe ActsAsConstrained::DateConstraint do
 
   end
 
+  context "when filtering by constraints" do
+
+    before do
+      offer.date_constraints << create(:date_constraint, starts_at: Date.yesterday, ends_at: Date.tomorrow)
+    end
+
+    subject { offer }
+
+    it "should find the offer when filtered by the right date" do
+      expect(Offer.constrained_by_date).not_to be_blank
+      puts Offer.constrained_by_date.inspect
+      puts Offer.constrained_by_date.to_sql
+    end
+
+  end
+
 end
