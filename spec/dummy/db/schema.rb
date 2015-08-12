@@ -11,22 +11,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150812133757) do
+ActiveRecord::Schema.define(version: 20150812150811) do
 
   create_table "acts_as_constrained_date_constraints", force: :cascade do |t|
     t.date     "starts_at"
     t.date     "ends_at"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+    t.integer  "constrained_id"
+    t.string   "constrained_type"
   end
 
-  create_table "acts_as_constrained_date_constraints_offers", id: false, force: :cascade do |t|
-    t.integer "date_constraint_id"
-    t.integer "offer_id"
-  end
-
-  add_index "acts_as_constrained_date_constraints_offers", ["date_constraint_id"], name: "index_date_constraints_offers_on_date_constraint_id"
-  add_index "acts_as_constrained_date_constraints_offers", ["offer_id"], name: "index_acts_as_constrained_date_constraints_offers_on_offer_id"
+  add_index "acts_as_constrained_date_constraints", ["constrained_type", "constrained_id"], name: "index_date_constraints_on_constrained_type_and_constrained_id"
 
   create_table "offers", force: :cascade do |t|
     t.string   "name"
