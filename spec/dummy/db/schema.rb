@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150812150811) do
+ActiveRecord::Schema.define(version: 20150813085822) do
 
   create_table "acts_as_constrained_date_constraints", force: :cascade do |t|
     t.date     "starts_at"
@@ -23,6 +23,30 @@ ActiveRecord::Schema.define(version: 20150812150811) do
   end
 
   add_index "acts_as_constrained_date_constraints", ["constrained_type", "constrained_id"], name: "index_date_constraints_on_constrained_type_and_constrained_id"
+
+  create_table "acts_as_constrained_model_constraints", force: :cascade do |t|
+    t.integer  "constrained_id"
+    t.string   "constrained_type"
+    t.integer  "constraining_id"
+    t.string   "constraining_type"
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
+  end
+
+  add_index "acts_as_constrained_model_constraints", ["constrained_type", "constrained_id"], name: "index_model_constraints_on_constrained_type_and_id"
+  add_index "acts_as_constrained_model_constraints", ["constraining_type", "constraining_id"], name: "index_model_constraints_on_constraining_type_and_id"
+
+  create_table "countries", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "markets", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "offers", force: :cascade do |t|
     t.string   "name"

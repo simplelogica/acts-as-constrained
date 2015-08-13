@@ -29,8 +29,6 @@ describe ActsAsConstrained::DateConstraint do
 
     it "should find the offer when filtered by the right date" do
       expect(Offer.constrained_by_date).not_to be_blank
-      puts Offer.constrained_by_date.inspect
-      puts Offer.constrained_by_date.to_sql
     end
 
   end
