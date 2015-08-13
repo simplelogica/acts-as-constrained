@@ -70,13 +70,11 @@ describe ActsAsConstrained do
     subject { offer }
 
     it "should find the offer when filtered by the right constraints" do
-      expect(Offer.constrained_by_market(market)).to match_array offers_with_good_market
-      expect(Offer.constrained_by_date(Time.now)).to match_array offers_with_good_date
-      expect(Offer.constrained_by_date(Time.now).constrained_by_market(market)).to match_array offers_with_good_market_and_country
+      expect(Offer.constrained_by(model: [market])).to match_array offers_with_good_market
+      expect(Offer.constrained_by(date: Time.now)).to match_array offers_with_good_date
+      expect(Offer.constrained_by(date: Time.now, model: [market])).to match_array offers_with_good_market_and_country
       expect(
-        Offer.constrained_by_date(Time.now).
-          constrained_by_market(market).
-          constrained_by_country(country)
+        Offer.constrained_by(date: Time.now, model: [market, country])
       ).to match_array [good_date_good_market_offer_with_country]
     end
 

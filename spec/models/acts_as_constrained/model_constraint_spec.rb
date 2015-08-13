@@ -32,7 +32,7 @@ describe ActsAsConstrained::ModelConstraint do
     subject { offer }
 
     it "should find the offer when filtered by the right date" do
-      expect(Offer.constrained_by_market(market)).to eq [offer]
+      expect(Offer.constrained_by_model(market)).to eq [offer]
     end
 
   end
