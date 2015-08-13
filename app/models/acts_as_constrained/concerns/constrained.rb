@@ -10,6 +10,12 @@ module ActsAsConstrained::Concerns
         self.include "ActsAsConstrained::Concerns::#{constraint_type.to_s.camelize}Constraint".constantize
       end
 
+      scope :constrained_by, ->(constraints) do
+        constraints.inject(self) { |result, constraint|
+          constraint_kind, constraint_values = constraint
+          result.send "constrained_by_#{constraint_kind}", constraint_values
+        }
+      end
     end
 
   end
