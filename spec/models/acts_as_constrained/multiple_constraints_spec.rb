@@ -7,7 +7,21 @@ describe ActsAsConstrained do
 
     let!(:good_date_good_market_offer) do
       create :offer,
-        model_constraints: [create(:model_constraint, constraining: market)],
+        model_constraints: [
+          create(:model_constraint, constraining: market),
+        ],
+        date_constraints: [create(:date_constraint,
+          starts_at: 7.days.ago,
+          ends_at: 7.days.from_now
+        )]
+    end
+
+    let!(:good_date_good_market_offer_with_country) do
+      create :offer,
+        model_constraints: [
+          create(:model_constraint, constraining: market),
+          create(:model_constraint, constraining: country),
+        ],
         date_constraints: [create(:date_constraint,
           starts_at: 7.days.ago,
           ends_at: 7.days.from_now
@@ -42,9 +56,11 @@ describe ActsAsConstrained do
     end
 
     let(:market) { create :market }
+    let(:country) { create :country }
 
-    let!(:offers_with_good_market) { [good_date_good_market_offer, bad_date_good_market_offer] }
-    let!(:offers_with_good_date) { [good_date_good_market_offer, good_date_bad_market_offer] }
+    let!(:offers_with_good_market) { [good_date_good_market_offer_with_country, good_date_good_market_offer, bad_date_good_market_offer] }
+    let!(:offers_with_good_date) { [good_date_good_market_offer_with_country, good_date_good_market_offer, good_date_bad_market_offer] }
+    let!(:offers_with_good_market_and_country) { [good_date_good_market_offer_with_country, good_date_good_market_offer] }
 
     before do
       create :offer
@@ -53,11 +69,21 @@ describe ActsAsConstrained do
 
     subject { offer }
 
-    it "should find the offer when filtered by the right date" do
+    it "should find the offer when filtered by the right constraints" do
       expect(Offer.constrained_by_market(market)).to match_array offers_with_good_market
       expect(Offer.constrained_by_date(Time.now)).to match_array offers_with_good_date
-      expect(Offer.constrained_by_date(Time.now).constrained_by_market(market)).to match_array [good_date_good_market_offer]
+      expect(Offer.constrained_by_date(Time.now).constrained_by_market(market)).to match_array offers_with_good_market_and_country
+      puts Offer.constrained_by_date(Time.now).
+          constrained_by_market(market).
+          constrained_by_country(country).to_sql
+      expect(
+        Offer.constrained_by_date(Time.now).
+          constrained_by_market(market).
+          constrained_by_country(country)
+      ).to match_array [good_date_good_market_offer_with_country]
     end
+
+
 
   end
 
