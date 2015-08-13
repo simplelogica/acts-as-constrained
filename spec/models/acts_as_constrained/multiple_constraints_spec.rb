@@ -73,9 +73,6 @@ describe ActsAsConstrained do
       expect(Offer.constrained_by_market(market)).to match_array offers_with_good_market
       expect(Offer.constrained_by_date(Time.now)).to match_array offers_with_good_date
       expect(Offer.constrained_by_date(Time.now).constrained_by_market(market)).to match_array offers_with_good_market_and_country
-      puts Offer.constrained_by_date(Time.now).
-          constrained_by_market(market).
-          constrained_by_country(country).to_sql
       expect(
         Offer.constrained_by_date(Time.now).
           constrained_by_market(market).
