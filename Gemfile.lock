@@ -2,7 +2,7 @@ PATH
   remote: .
   specs:
     acts_as_constrained (0.0.1)
-      rails (~> 4.2.3)
+      rails (~> 4.0)
 
 GEM
   remote: https://rubygems.org/
@@ -127,7 +127,7 @@ GEM
     simplecov-json (0.2)
       json
       simplecov
-    sprockets (3.2.0)
+    sprockets (3.3.0)
       rack (~> 1.0)
     sprockets-rails (2.3.2)
       actionpack (>= 3.0)
