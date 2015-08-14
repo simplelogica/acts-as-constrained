@@ -2,8 +2,7 @@ PATH
   remote: ../
   specs:
     acts_as_constrained (0.0.1)
-      activesupport (~> 4.0)
-      rails (~> 4.0)
+      rails (~> 4.0, < 4.3)
 
 GEM
   remote: https://rubygems.org/
