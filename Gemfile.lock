@@ -42,6 +42,10 @@ GEM
       minitest (~> 5.1)
       thread_safe (~> 0.3, >= 0.3.4)
       tzinfo (~> 1.1)
+    appraisal (2.1.0)
+      bundler
+      rake
+      thor (>= 0.14.0)
     arel (6.0.3)
     builder (3.2.2)
     capybara (2.4.4)
@@ -51,6 +55,7 @@ GEM
       rack-test (>= 0.5.4)
       xpath (~> 2.0)
     diff-lcs (1.2.5)
+    docile (1.1.5)
     erubis (2.7.0)
     factory_girl (4.5.0)
       activesupport (>= 3.0.0)
@@ -114,6 +119,14 @@ GEM
       rspec-mocks (~> 3.3.0)
       rspec-support (~> 3.3.0)
     rspec-support (3.3.0)
+    simplecov (0.10.0)
+      docile (~> 1.1.0)
+      json (~> 1.8)
+      simplecov-html (~> 0.10.0)
+    simplecov-html (0.10.0)
+    simplecov-json (0.2)
+      json
+      simplecov
     sprockets (3.2.0)
       rack (~> 1.0)
     sprockets-rails (2.3.2)
@@ -133,10 +146,13 @@ PLATFORMS
 
 DEPENDENCIES
   acts_as_constrained!
+  appraisal
   capybara
   factory_girl
   faker
   rspec-rails
+  simplecov
+  simplecov-json
   sqlite3
 
 BUNDLED WITH

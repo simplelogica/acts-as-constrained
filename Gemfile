@@ -18,4 +18,7 @@ group :test do
   gem 'rspec-rails'
   gem 'factory_girl'
   gem 'capybara'
+  gem 'appraisal'
+  gem 'simplecov'
+  gem 'simplecov-json'
 end
