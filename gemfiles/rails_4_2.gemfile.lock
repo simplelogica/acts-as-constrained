@@ -1,5 +1,5 @@
 PATH
-  remote: .
+  remote: ../
   specs:
     acts_as_constrained (0.0.1)
       rails (~> 4.0, < 4.3)
@@ -150,6 +150,7 @@ DEPENDENCIES
   capybara
   factory_girl
   faker
+  rails (= 4.2.3)
   rspec-rails
   simplecov
   simplecov-json
