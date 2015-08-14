@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150813085822) do
+ActiveRecord::Schema.define(version: 20150814083020) do
 
   create_table "acts_as_constrained_date_constraints", force: :cascade do |t|
     t.date     "starts_at"
@@ -50,8 +50,10 @@ ActiveRecord::Schema.define(version: 20150813085822) do
 
   create_table "offers", force: :cascade do |t|
     t.string   "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",                       null: false
+    t.datetime "updated_at",                       null: false
+    t.date     "single_date_constraint_starts_at"
+    t.date     "single_date_constraint_ends_at"
   end
 
 end
