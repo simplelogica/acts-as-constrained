@@ -11,26 +11,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150814083020) do
+ActiveRecord::Schema.define(version: 20150817110739) do
 
   create_table "acts_as_constrained_date_constraints", force: :cascade do |t|
-    t.date     "starts_at"
-    t.date     "ends_at"
-    t.datetime "created_at",       null: false
-    t.datetime "updated_at",       null: false
-    t.integer  "constrained_id"
-    t.string   "constrained_type"
+    t.date    "starts_at"
+    t.date    "ends_at"
+    t.integer "constrained_id"
+    t.string  "constrained_type"
   end
 
-  add_index "acts_as_constrained_date_constraints", ["constrained_type", "constrained_id"], name: "index_date_constraints_on_constrained_type_and_constrained_id"
+  add_index "acts_as_constrained_date_constraints", ["constrained_type", "constrained_id"], name: "index_date_constraints_on_constrained_type_and_id"
 
   create_table "acts_as_constrained_model_constraints", force: :cascade do |t|
-    t.integer  "constrained_id"
-    t.string   "constrained_type"
-    t.integer  "constraining_id"
-    t.string   "constraining_type"
-    t.datetime "created_at",        null: false
-    t.datetime "updated_at",        null: false
+    t.integer "constraining_id"
+    t.string  "constraining_type"
+    t.integer "constrained_id"
+    t.string  "constrained_type"
   end
 
   add_index "acts_as_constrained_model_constraints", ["constrained_type", "constrained_id"], name: "index_model_constraints_on_constrained_type_and_id"
