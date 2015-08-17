@@ -9,12 +9,12 @@ Gem::Specification.new do |s|
   s.version     = ActsAsConstrained::VERSION
   s.authors     = ["David J. Brenes"]
   s.email       = ["davidjbrenes@gmail.com"]
-  s.homepage    = "TODO"
-  s.summary     = "TODO: Summary of ActsAsConstrained."
-  s.description = "TODO: Description of ActsAsConstrained."
-  s.license     = "MIT"
+  s.homepage    = "https://github.com/simplelogica/acts_as_constrained"
+  s.summary     = "Rails engine for defining how a model will be filtered and constrained"
+  s.description = "Rails engine for defining how a model will be filtered and constrained"
+  s.license     = "GPL"
 
-  s.files = Dir["{app,config,db,lib}/**/*", "MIT-LICENSE", "Rakefile", "README.rdoc"]
+  s.files = Dir["{app,config,db,lib}/**/*", "LICENSE", "Rakefile", "README.md"]
   s.test_files = Dir["test/**/*"]
 
   s.add_dependency "rails", "~> 4.0", "< 4.3"
