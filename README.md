@@ -46,6 +46,13 @@ It uses the `ActsAsConstrained::DateConstraint` model to store the periods of
 time where each object is valid and provides a scope to constrain a model
 according to a date.
 
+In order to use this constrain you have to generate a migration for the required
+`DateConstraint` model. This engine provides a generator for this migration:
+
+```
+rails g acts_as_constrained:multiple_date_migration
+```
+
 ### Single Date
 
 It's implemented in the `ActsAsConstrained::Concerns::SingleDateConstraint`
@@ -55,17 +62,24 @@ It uses two attributes in the same model to perform a filter according to a
 date. The main difference with the MultipleDate is that you can't assign more
 than one period.
 
-In order to use this constrain you have to generate a migraiton for those
+In order to use this constrain you have to generate a migration for those
 fields. This engine provides a generator for that:
 
 ```
-rails g acts_as_constrained:single_date_migration offer
+rails g acts_as_constrained:single_date_migration your_model_name
 ```
 
 ### Model
 
 It allows to create a relationship between the constrained model and another one
 and retrieve only the records related with a constraining object.
+
+In order to use this constrain you have to generate a migration for the required
+`ModelConstraint` model. This engine provides a generator for this migration:
+
+```
+rails g acts_as_constrained:model_migration
+```
 
 ## Additional constraints
 
