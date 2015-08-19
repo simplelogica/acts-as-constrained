@@ -5,7 +5,7 @@ require "acts_as_constrained/version"
 
 # Describe your gem and declare its dependencies:
 Gem::Specification.new do |s|
-  s.name        = "acts_as_constrained"
+  s.name        = "acts-as-constrained"
   s.version     = ActsAsConstrained::VERSION
   s.authors     = ["David J. Brenes"]
   s.email       = ["davidjbrenes@gmail.com"]
