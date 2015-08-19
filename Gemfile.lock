@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    acts_as_constrained (0.0.1)
+    acts-as-constrained (0.0.1)
       rails (~> 4.0, < 4.3)
 
 GEM
@@ -127,7 +127,7 @@ GEM
     simplecov-json (0.2)
       json
       simplecov
-    sprockets (3.3.0)
+    sprockets (3.3.1)
       rack (~> 1.0)
     sprockets-rails (2.3.2)
       actionpack (>= 3.0)
@@ -145,7 +145,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  acts_as_constrained!
+  acts-as-constrained!
   appraisal
   capybara
   factory_girl
@@ -156,4 +156,4 @@ DEPENDENCIES
   sqlite3
 
 BUNDLED WITH
-   1.10.5
+   1.10.6
