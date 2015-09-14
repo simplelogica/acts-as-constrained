@@ -1,0 +1,23 @@
+module ActsAsConstrained::Concerns
+  module <%= name.camelize %>Constraint
+
+    extend ActiveSupport::Concern
+
+    included do
+
+      ##
+      ## Here you define any relationship or helper method you may need in order
+      ##   to create the constraints
+      ##
+
+
+      ##
+      # In this scope you constrain the model by any criteria you want
+      scope :constrained_by_<%= name.underscore %>, ->(<%= name.pluralize.underscore %>) {
+
+      }
+
+    end
+
+  end
+end
