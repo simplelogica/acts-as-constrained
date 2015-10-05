@@ -9,7 +9,6 @@ require "action_view/railtie"
 # require "rails/test_unit/railtie"
 
 Bundler.require(*Rails.groups)
-require "acts_as_constrained"
 
 module Dummy
   class Application < Rails::Application
