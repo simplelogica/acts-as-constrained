@@ -15,10 +15,20 @@ module ActsAsConstrained::Concerns
 
       scope :constrained_by_single_date, ->(time = Time.now) do
         where(
-          "? BETWEEN
-            single_date_constraint_starts_at AND
-            single_date_constraint_ends_at",
-          time
+          "(
+            ? >= single_date_constraint_starts_at AND
+            single_date_constraint_ends_at IS NULL
+          ) OR
+          (
+            ? <= single_date_constraint_ends_at AND
+            single_date_constraint_starts_at IS NULL
+          ) OR
+          (
+            ? BETWEEN
+              single_date_constraint_starts_at AND
+              single_date_constraint_ends_at
+          )",
+          time, time, time
         )
       end
 
