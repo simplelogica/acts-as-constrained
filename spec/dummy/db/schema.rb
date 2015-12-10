@@ -13,41 +13,44 @@
 
 ActiveRecord::Schema.define(version: 20150817110739) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "acts_as_constrained_date_constraints", force: :cascade do |t|
     t.date    "starts_at"
     t.date    "ends_at"
     t.integer "constrained_id"
-    t.string  "constrained_type"
+    t.string  "constrained_type", limit: 255
   end
 
-  add_index "acts_as_constrained_date_constraints", ["constrained_type", "constrained_id"], name: "index_date_constraints_on_constrained_type_and_id"
+  add_index "acts_as_constrained_date_constraints", ["constrained_id", "constrained_type"], name: "index_date_constraints_on_constrained_type_and_id", using: :btree
 
   create_table "acts_as_constrained_model_constraints", force: :cascade do |t|
     t.integer "constraining_id"
-    t.string  "constraining_type"
+    t.string  "constraining_type", limit: 255
     t.integer "constrained_id"
-    t.string  "constrained_type"
+    t.string  "constrained_type",  limit: 255
   end
 
-  add_index "acts_as_constrained_model_constraints", ["constrained_type", "constrained_id"], name: "index_model_constraints_on_constrained_type_and_id"
-  add_index "acts_as_constrained_model_constraints", ["constraining_type", "constraining_id"], name: "index_model_constraints_on_constraining_type_and_id"
+  add_index "acts_as_constrained_model_constraints", ["constrained_id", "constrained_type"], name: "index_model_constraints_on_constrained_type_and_id", using: :btree
+  add_index "acts_as_constrained_model_constraints", ["constraining_id", "constraining_type"], name: "index_model_constraints_on_constraining_type_and_id", using: :btree
 
   create_table "countries", force: :cascade do |t|
-    t.string   "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.string   "name",       limit: 255
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
   end
 
   create_table "markets", force: :cascade do |t|
-    t.string   "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.string   "name",       limit: 255
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
   end
 
   create_table "offers", force: :cascade do |t|
-    t.string   "name"
-    t.datetime "created_at",                       null: false
-    t.datetime "updated_at",                       null: false
+    t.string   "name",                             limit: 255
+    t.datetime "created_at",                                   null: false
+    t.datetime "updated_at",                                   null: false
     t.date     "single_date_constraint_starts_at"
     t.date     "single_date_constraint_ends_at"
   end
