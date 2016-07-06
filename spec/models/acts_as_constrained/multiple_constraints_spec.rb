@@ -101,8 +101,6 @@ describe ActsAsConstrained do
         )]
     end
 
-    let!(:valid_results) { [good_date_good_market_hotel, bad_date_good_market_hotel] }
-
     let(:market) { create :market }
 
     before do
@@ -113,8 +111,10 @@ describe ActsAsConstrained do
     subject { hotel }
 
     it "should find the hotels when filtered by the optional constraints" do
-      expect(Hotel.constrained_by(model: [market])).to match_array valid_results
-      expect(Hotel.constrained_by(date: Time.now, model: [market])).to match_array valid_results
+      expect(Hotel.constrained_by(model: [market])).to match_array [good_date_good_market_hotel, bad_date_good_market_hotel]
+      expect(Hotel.constrained_by(date: Time.now, model: [market])).to match_array [good_date_good_market_hotel]
+      expect(Hotel.constrained_by(date: 15.days.from_now, model: [market])).to match_array [bad_date_good_market_hotel]
+      expect(Hotel.constrained_by(date: 45.days.from_now, model: [market])).to match_array [good_date_good_market_hotel, bad_date_good_market_hotel]
     end
   end
 
