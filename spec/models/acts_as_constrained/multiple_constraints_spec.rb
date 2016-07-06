@@ -77,9 +77,45 @@ describe ActsAsConstrained do
         Offer.constrained_by(date: Time.now, model: [market, country])
       ).to match_array [good_date_good_market_offer_with_country]
     end
+  end
 
+  context "when filtering by optional constraints" do
 
+    let!(:good_date_good_market_hotel) do
+      create :hotel,
+        model_constraints: [
+          create(:model_constraint, constraining: market),
+        ],
+        date_constraints: [create(:date_constraint,
+          starts_at: 7.days.ago,
+          ends_at: 7.days.from_now
+        )]
+    end
 
+    let!(:bad_date_good_market_hotel) do
+      create :hotel,
+        model_constraints: [create(:model_constraint, constraining: market)],
+        date_constraints: [create(:date_constraint,
+          starts_at: 7.days.from_now,
+          ends_at: 17.days.from_now
+        )]
+    end
+
+    let!(:valid_results) { [good_date_good_market_hotel, bad_date_good_market_hotel] }
+
+    let(:market) { create :market }
+
+    before do
+      create :hotel
+      create :hotel
+    end
+
+    subject { hotel }
+
+    it "should find the hotels when filtered by the optional constraints" do
+      expect(Hotel.constrained_by(model: [market])).to match_array valid_results
+      expect(Hotel.constrained_by(date: Time.now, model: [market])).to match_array valid_results
+    end
   end
 
 end
