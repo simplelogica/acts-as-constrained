@@ -86,7 +86,7 @@ module ActsAsConstrained::Concerns
       end
 
       def self.build_constraints scope, constraints, optional=false
-        constraints.inject(scope) { |result, constraint|
+        constraints.inject(scope) { |scope, constraint|
           # We get the constraint kinds and params
           constraint_kind, constraint_values = constraint
           # Now we chain a new scope using the constraint_values as params
