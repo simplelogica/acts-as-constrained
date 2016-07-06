@@ -33,6 +33,20 @@ class Offer < ActiveRecord::Base
 end
 ```
 
+It is possible to add constraints that are not required to comply. If we are using an optional constraint
+and, with the resulting filter, we'll get an empty result then the constraint will be ignored.
+
+```ruby
+class Offer < ActiveRecord::Base
+
+  include ActsAsConstrained::Concerns::Constrained
+
+  constrain_by :model
+  constrain_by :single_date, optional: true
+
+end
+```
+
 ## Constraints
 
 Currently there are 3 implemented constraints: by multiple dates, a single date
