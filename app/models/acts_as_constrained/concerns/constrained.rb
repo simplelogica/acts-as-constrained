@@ -74,7 +74,7 @@ module ActsAsConstrained::Concerns
         loop do
           break if opt_constraints.blank?
 
-          result_with_optionals = build_constraints result_with_required, opt_constraints, true
+          result_with_optionals = build_constraints result_with_required, opt_constraints
           if result_with_optionals.count > 0
             result = result_with_optionals and break
           else
@@ -85,12 +85,12 @@ module ActsAsConstrained::Concerns
         result
       end
 
-      def self.build_constraints scope, constraints, optional=false
+      def self.build_constraints scope, constraints
         constraints.inject(scope) { |scope, constraint|
           # We get the constraint kinds and params
           constraint_kind, constraint_values = constraint
           # Now we chain a new scope using the constraint_values as params
-          scope.send "constrained_by_#{constraint_kind}", constraint_values unless optional && constraint_values.blank?
+          scope.send "constrained_by_#{constraint_kind}", constraint_values
         }
       end
     end
