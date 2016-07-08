@@ -64,20 +64,24 @@ module ActsAsConstrained::Concerns
       #   constrained_by_dummy(99)
       #
       # Some constrains may be optional. In that case it will try to get results with them (or fallback to the
-      # the required ones). The concatenation of more scopes will not work in this scenario.
+      # the required ones).
       scope :constrained_by, ->(constraints) do
         req_constraints = constraints.reject{|c| (self.optional_constraints || []).include?(c)}
         opt_constraints = constraints.select{|c| (self.optional_constraints || []).include?(c) && constraints[c].present?}
 
-        #We build the query with the required constraints and then we try to get results with the optional ones
+        #We build the query with the required constraints
         result = result_with_required = build_constraints self, req_constraints
+        # And then we try to get results with the optional ones. We try with all the optional constraints and
+        # begin to remove them one by one until we get some results.
         loop do
           break if opt_constraints.blank?
 
           result_with_optionals = build_constraints result_with_required, opt_constraints
           if result_with_optionals.count > 0
+            #Keep the results
             result = result_with_optionals and break
           else
+            #Remove the last constraint
             opt_constraints.delete(opt_constraints.keys.last)
           end
         end
