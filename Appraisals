@@ -13,6 +13,11 @@ appraise "rails-4-2-mysql" do
   gem "rails", "4.2.5"
 end
 
+appraise "rails-5-0-mysql" do
+  gem "mysql2"
+  gem "rails", "5.0.0"
+end
+
 appraise "rails-4-0-pgsql" do
   gem "pg"
   gem "rails", "4.0.13"
@@ -26,4 +31,9 @@ end
 appraise "rails-4-2-pgsql" do
   gem "pg"
   gem "rails", "4.2.5"
+end
+
+appraise "rails-5-0-pgsql" do
+  gem "pg"
+  gem "rails", "5.0.0"
 end
