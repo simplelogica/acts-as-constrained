@@ -9,3 +9,7 @@ end
 appraise "rails-4-2" do
   gem "rails", "4.2.3"
 end
+
+appraise "rails-5-2-3" do
+  gem "rails", "5.2.3"
+end
