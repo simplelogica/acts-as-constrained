@@ -1,8 +1,9 @@
 PATH
-  remote: ../
+  remote: ..
   specs:
-    acts-as-constrained (0.0.2)
-      rails (>= 4.0, < 5.1)
+    acts-as-constrained (0.1.0)
+      rails (>= 4.0, < 5.3)
+
 
 GEM
   remote: https://rubygems.org/
@@ -137,4 +138,4 @@ DEPENDENCIES
   simplecov-json
 
 BUNDLED WITH
-   1.10.6
+   1.17.0
