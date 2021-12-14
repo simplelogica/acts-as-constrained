@@ -1,4 +1,4 @@
-test_mysql2: &test_mysql2
+db_mysql2: &db_mysql2
   adapter: mysql2
   encoding: utf8
   reconnect: false
@@ -7,7 +7,7 @@ test_mysql2: &test_mysql2
   password:
   host: localhost
 
-test_pg: &test_pg
+db_pg: &db_pg
   adapter: postgresql
   pool: 5
   timeout: 5000
@@ -18,8 +18,8 @@ test_pg: &test_pg
 
 development:
   database: acts-as-constrained-dev
-  <<: *test_<%= ActsAsConstrained.installed_db_gem %>
+  <<: *db_<%= ActsAsConstrained.installed_db_gem %>
 
 test:
   database: acts_as_constrained_test
-  <<: *test_<%= ActsAsConstrained.installed_db_gem %>
+  <<: *db_<%= ActsAsConstrained.installed_db_gem %>
