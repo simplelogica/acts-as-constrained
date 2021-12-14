@@ -16,7 +16,7 @@ gemspec
 group :test do
   gem 'faker'
   gem 'rspec-rails'
-  gem 'factory_girl'
+  gem 'factory_bot'
   gem 'capybara'
   gem 'appraisal'
   gem 'simplecov'
